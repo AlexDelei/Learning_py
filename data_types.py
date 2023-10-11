@@ -1,12 +1,14 @@
-#various data types in python
-#text type: str
-#numeric types: int, float, complex
-#sequence types: list, tuple, range
-#mapping types: dict
-#set types: set , frozenset
-#boolean type: bool
-#binary types: bytes, bytearray, memoryview
-#none type: NoneType
+"""
+various data types in python
+text type: str
+numeric types: int, float, complex
+sequence types: list, tuple, range
+mapping types: dict
+set types: set , frozenset
+boolean type: bool
+binary types: bytes, bytearray, memoryview
+none type: NoneType
+"""
 """
 x = int(24)
 x = float(23.5)
