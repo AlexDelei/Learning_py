@@ -164,3 +164,31 @@ where the parameters -> value (a must) is the string to search for
 text = "I love apples , apples are my favorite"
 x = text.count("apples", 0, )
 print(x)
+
+print("\n")
+
+#encode()
+"""
+
+Defn:
+The encode() funtion encodes a string using a specified encoding. Default encoding uses UTF-8 
+
+Syntax:
+string_variable.encode(encoding = encoding, errors = errors)
+
+where parameter values -> encoding  (optional) is a string specifying the encoding to use
+                       -> errors  (optional) is a string specifying the error method
+
+                       legal error methods are
+                      1. 'backslashreplace' - uses a backslash instead of the character that could not be encoded
+                      2. 'ignore' - ignores the character that can not be encoded
+                      3. 'namereplace' - replaces the character with a text explaining the character
+                      4. 'strict' - Default, raises an error on failure
+                      5. 'replace' - replaces the character with a questionmark
+                      6. 'xmlcharrefreplace' - replaces the caharacter with an xml character
+
+"""
+
+name = "My name is Ståle"
+print(name.encode(encoding="ascii", errors="backslashreplace"))
+#print(name.encode(encoding="ascii", errors="ignore"))
