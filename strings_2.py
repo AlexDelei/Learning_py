@@ -92,3 +92,75 @@ upper() - Converts a string into upper case
 zfill() - Fills the string with a specified number of 0 values at the beginning
 
 """
+
+#capitalize()
+"""
+Defn:
+The capitalize() function returns a string where the fist character is uppercase and the rest is lower
+
+Syntax:
+string_variable.capitalize()
+
+NO PARAMETER VALUES
+
+"""
+name = "alex loves python!"
+x = name.capitalize()
+print(x)
+
+print("\n")
+
+
+#casefold()
+"""
+Defn:
+The casefold() function returns a string with lowercase characters
+It is similar to lower() function  but casefold() is stronger and more aggressive meaning it will convert many characters into lowercase
+
+Syntax:
+string_variable.casefold()
+
+NO PARAMETERS
+
+"""
+
+#center()
+"""
+
+Defn:
+The center() function will center align the string, using a specified character (space is default) as the fill character.
+
+Syntax:
+string_variable.center(length, character)
+
+where -> length (is a must) is the length of the returned string
+      -> character (optional) is the character to fill the missing space on each side. Default is " " (space) 
+
+
+"""
+
+text = "pineappple"
+x = text.center(50)
+print(x)
+
+print("\n")
+
+#count()
+"""
+
+Defn:
+The count() function returns the number of times a specified value appears in the string
+
+Syntax:
+string_value.count(value, start, end)
+
+where the parameters -> value (a must) is the string to search for
+                     -> start (optional) is an integer , the position to start the search
+                     -> end   (optional) is an integer , the postion to end the search, default is the end of the string   
+
+
+"""
+
+text = "I love apples , apples are my favorite"
+x = text.count("apples", 0, )
+print(x)
