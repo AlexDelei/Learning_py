@@ -11,6 +11,8 @@ print(b[0])
 
 print("\n")
 for x in "bananas":
+    x = x
+    print(type(x))
     print(x)
 
 print("\n")
@@ -24,5 +26,40 @@ print("\n")
 text2 = "The bests things in this life are free!"
 if "car" not in text2:
     print("No, 'car' is not in " + text2)
+
+print("\n")
+
+#Slicing 
+b = "Alex Delei"
+print(b[2:7])
+
+print("\n")
+
+c = "Alex Delei Saitoti"
+print(c[2:])
+
+print("\n")
+
+d = "Alex Delei Saitoti"
+print(d[-5:-2])
+
+print("\n")
+
+#Modifying strings
+"""
+printing in uppper case
+
+"""
+a = "alex delei saitoti."
+print(a.upper())
+
+print("\n")
+
+"""
+printing in lower case
+
+"""
+e = "ALEX DELEI SAITOTI."
+print(e.lower())
 
 print("\n")
