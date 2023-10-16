@@ -187,3 +187,98 @@ where parameter values -> encoding  (optional) is a string specifying the encodi
                   6. 'xmlcharrefreplace' - replaces the caharacter with an xml character
 
 """
+
+#endswith()
+"""
+
+Defn:
+The endswith() function returns True if the string ends with the specified value, otherwise False.
+
+Syntax:
+string_variable.endswith(value, start, end)
+
+where parameters -> value (must) is the value required to check if the string ends with
+                 -> start  (optional) an integer specifying where we should start
+                 -> end    (optional) an integer specifying where we should end searching 
+"""
+text = "Hello , welcome to my world"
+x = text.endswith("my world", 0, )
+print(x)
+print("\n")
+
+#expandtabs()
+"""
+
+Defn:
+The expandtabs() function sets the tab size to the specified number of whitespaces.
+
+Syntax:
+string_variable.expandtabs(tabsize)
+
+where parameter -> tabsize (optional) is the number specifying the tabsize. Default is 8
+
+"""
+name = "H\te\tl\tl\to\t"
+print(name.expandtabs())
+print("\n")
+
+#find()
+"""
+
+Defn:
+The find() function finds the first occurrence of the specified value.
+It returns -1 if the value is not found.
+The find() function is almost the same as the index() function, the only difference is that the index() function raises an exception if the value is not found. 
+
+Syntax:
+string_variable.find(value, start, end)
+
+where parametes -> value (must) is the value to search for
+                -> start  (optional) where to start. default is 0
+                -> end   (optional) where to end search. default is the end of the string  
+
+"""
+text = "Hello , welcome to my world!"
+x = text.find("e", 5, )
+print(x)
+print("\n")
+
+#format_map()
+"""
+
+Defn:
+formats specified value in a string
+
+"""
+
+#index()
+"""
+
+Defn:
+The index() function finds the first occurrence of the specified value.
+The function raises an exception if the value is not found
+The index() function is almost the same as the find() function, the only difference is that the find() function returns -1 if the value is not found.
+
+Syntax:
+string_variable.index(value, start, end)
+
+"""
+text = "Hello, welcome to my world!"
+x = text.index("e", 0, )
+print(x)
+print("\n")
+
+#isalnum()
+"""
+
+Defn:
+The isalnum() function returns True if all the characters are alphanumeric, meaning alphabet letter (a-z) and numbers (0-9).
+
+Syntax:
+string_variable.isalnum()
+
+NO PARAMETERS
+"""
+name = "Hi Alex45"
+x = name.isalnum()
+print(x)
