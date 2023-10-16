@@ -10,5 +10,13 @@
     <p style="font-family: fantasy;">{{ message }}</p>
     <br>
     <p style="font-family: fantasy;"> {{ message2 }}</p>
+    <br>
+    <form action="/process" method="post">
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="submit" value="submit">
+    </form>
+    {% if name %}
+        <p style="font-family: fantasy;">Hi, {{ name.title() }}, Welcome to my webpage ( ^ _ ^ )</p>
+    {% endif %}
 </body>
 </html>
