@@ -35,6 +35,8 @@ isdigit() - Returns True if all characters in the string are digits
 
 isidentifier() - Returns True if the string is an identifier
 
+isinstance() - Returns True if an object is of certain data type and false is otherwise
+
 islower() - Returns True if all characters in the string are lower case
 
 isnumeric() - Returns True if all characters in the string are numeric
