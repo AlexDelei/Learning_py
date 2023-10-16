@@ -188,7 +188,3 @@ where parameter values -> encoding  (optional) is a string specifying the encodi
                       6. 'xmlcharrefreplace' - replaces the caharacter with an xml character
 
 """
-
-name = "My name is Ståle"
-print(name.encode(encoding="ascii", errors="backslashreplace"))
-#print(name.encode(encoding="ascii", errors="ignore"))
