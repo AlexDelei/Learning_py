@@ -1,4 +1,5 @@
-from flask import request
+from flask import request, render_template
+
 def get_hello_message():
     text = "pineappple"
     x = text.upper()
@@ -10,3 +11,5 @@ def formatting():
     result = items.format(a, b, c, f, g, h)
     print(result)
     return result
+def signin_boy():
+    return render_template('signup.html')
