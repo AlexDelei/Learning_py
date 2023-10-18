@@ -9,6 +9,9 @@
     <center><h1>Error: Read below for guidance</h1></center>
     <p style="font-family: 'Courier New', Courier, monospace; color: red;">You either did not input username or password, or neither,
     therefore, please <a href="/">go back</a> and do that!!</p>
-    <p style="font-family: 'Courier New', Courier, monospace; color: red;">Maybe you have are not signed in ? Then lets <a href="/signup">log you </a>in!</p>
+    {% if error_message %}
+        <p style="font-family: 'Courier New', Courier, monospace;color: red;"> {{ error_message4}}</p>
+    {% endif %}
+        <p style="font-family: 'Courier New', Courier, monospace; color: red;">Maybe you have are not signed in ? Then lets <a href="/signup">log you </a>in!</p>
 </body>
 </html>

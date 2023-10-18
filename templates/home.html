@@ -38,6 +38,10 @@
         <p style="font-family: fantasy;">Hi, {{ name.title() }}, Welcome to my webpage ( ^ _ ^ )</p>
         <p style="font-family: 'Courier New', Courier, monospace; color: green;">{{ success }}</p>
     {% endif %}
+
+    {% if error_message4 %}
+        <p style="font-family: 'Courier New', Courier, monospace;color: green;">{{ error_message4 }}</p>
+    {% endif %}
     <br><br>
     <p style="font-family: 'Courier New', Courier, monospace;color: blue;">Create your account here <a href="/signin">signup</a></p>
 </body>

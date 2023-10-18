@@ -1,5 +1,6 @@
 import pymysql
 from flask import *
+import json
 from pymysql import NULL
 from hello import get_hello_message, formatting, fib
 
@@ -8,9 +9,14 @@ app = Flask(__name__)
 mysql = pymysql.connect(host= 'localhost', user= 'root', password= '', database= 'tester')
 def insert_username(name, password):
     cur = mysql.cursor()
-    cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (name, password))
-    mysql.commit()
-    cur.close()
+    try:
+        cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (name, password))
+        mysql.commit()
+        cur.close()
+    except pymysql.IntegrityError:
+        mysql.rollback()
+        return False
+    return True
 def name_exists_in_database(name, password):
     cur = mysql.cursor()
     cur.execute("SELECT * FROM users WHERE username = %s AND password = %s", (name,password))
@@ -44,9 +50,21 @@ def process():
 @app.route('/error')
 def error_page():
     return render_template('error.html')
-@app.route('/signin')
+@app.route('/signin', methods=['PUT', 'GET'])
 def signin_boy():
-    error_message = "Oops! The details can not yet be stored but we are working on it.Thanks for your patience"
-    return render_template('signup.html', error_message= error_message)
+    saved = None
+    if request.method == 'PUT':
+        data = json.loads(request.data)
+        name = data.get('name')
+        password = data.get('password')
+        
+        
+        if name_exists_in_database(name, password):
+            error_message = "User already exists in the system. Please another details"
+            return redirect(url_for('error_page', error_message=error_message))
+        else:
+            insert_username(name, password)       
+    return render_template('signup.html')
+        
 if __name__ == '__main__':
     app.run(debug=True)
