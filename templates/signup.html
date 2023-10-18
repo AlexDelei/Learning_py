@@ -14,12 +14,19 @@
 </head>
 <body style="background-image: url('../static/files/images/paper.jpg');">
     <center><h1>Lets do this ASAP!</h1></center>
-    <form action="/signin" method="post">
+    <form action="/signin" align="center">
         <input type="text" name="name", placeholder="Enter your name"><br><br><br>
         <input type="password" name="password" placeholder="Enter your password"><br><br><br>
         <input type="submit" value="save">
     </form>
     <br><br><br>
+    {% if name %}
+        <p style="font-family: 'Courier New', Courier, monospace;color: green;">Details successfully stored</p>
+    {% endif %}
+
+    {% if error_message %}
+        <p style="font-family: 'Courier New', Courier, monospace;color: red;"> {{ error_message }}</p>
+    {% endif %}
     <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: blue;">Go to <a href="/"> homepage </a></p>
 </body>
 </html>

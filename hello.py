@@ -10,6 +10,12 @@ def formatting():
     items = "The prices of : {2} is {4} shillings, {1} for {5} shillings and {0} for {3} shillings only"
     result = items.format(a, b, c, f, g, h)
     print(result)
-    return result
-def signin_boy():
-    return render_template('signup.html')
+    return result.title()
+def fib():
+    person = {
+        'Firstname' : 'Harry',
+        'Secondname' : 'maguire',
+        'age': 32
+    }
+    x = person.values()
+    return x
