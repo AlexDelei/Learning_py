@@ -133,3 +133,99 @@ thistuple = ("kiwi", "bananas")
 fruits2.extend(thistuple)
 print(fruits2)
 #output = ['pineapples', 'tomatoes', 'strawberries', 'blueberries', 'kiwi', 'bananas']
+
+"""
+Removing list items
+
+remove() fiunction removes the specified list item
+"""
+print(fruits2) # this is after appending the two lists
+fruits2.remove("bananas")
+print(fruits2)
+#output = ['pineapples', 'tomatoes', 'strawberries', 'blueberries', 'kiwi']
+
+"""
+if there are duplicate items , the remove function removes the first one that is occuring in  the list
+"""
+"""
+Removing at the specified index
+
+pop() function removes an item at a specified index, if no index specified, it removes the last item
+
+"""
+print(list5)#['Being a', 'lecturer in', 'a University is', 'a good feeling']
+list5.pop(2)
+print(list5)#['Being a', 'lecturer in', 'a good feeling']
+list5.insert(2, "a University is")
+print(list5)#['Being a', 'lecturer in', 'a University is', 'a good feeling']
+"""
+del keyword also removes at the specified index
+"""
+del list5[2]
+print(list5)#['Being a', 'lecturer in', 'a good feeling']
+"""
+clear() function empties a list 
+"""
+#test = ["alex", "delei", 18]
+#test.clear()
+#print(test)#AttributeError: 'list' object has no attribute 'clear'
+
+"""
+LOOPING THROUGH A LIST
+
+"""
+list5.insert(2, "a University is")
+for x in list5:
+    print(x)
+    """
+    Being a
+    lecturer in
+    a University is
+    a good feeling
+    """
+"""
+Looping through the index numbers
+
+for this to happen , we use the range() function and len() function
+
+"""
+list5
+for i in range(len(list5)):#in range works the same as ; i < no.of list items; i++
+    print(list5[i])
+    """
+    Being a
+    lecturer in
+    a University is
+    a good feeling
+    """
+list5
+i = 0
+while i < len(list5):
+    print(list5[i])
+    i = i + 1
+    """
+    Being a
+    lecturer in
+    a University is
+    a good feeling
+    """
+"""
+Looping through using list comprehension
+"""
+list5
+#[print(x) for x in list5]
+"""
+[print(x) for x in list5]
+     ^
+SyntaxError: invalid syntax
+"""
+
+list5
+newlist = []
+for x in list5:
+    if "lecturer" in list5:
+        newlist.append(x)
+        break
+        
+
+print(newlist)
