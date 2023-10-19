@@ -49,28 +49,30 @@ def process():
             firstname = name2[1]
             return render_template('signin.html', name = name, length = length, firstname = firstname)
         elif name_exists_in_database(name, password) == 0:
-            return redirect(url_for('error_page'))
-    else:
-        insert_username(name, password)
-        success = "Name and password successfully stored in the database, its safe( * _ * )"
-        return render_template('home.html', password = password, name = name, message = message, message2 = message2, success= success)   
+            return redirect(url_for('error_page'))  
 @app.route('/error')
 def error_page():
     return render_template('error.html')
 @app.route('/signin', methods=['PUT', 'GET'])
 def signin_boy():
-    saved = None
     if request.method == 'PUT':
         data = json.loads(request.data)
         name = data.get('name')
         password = data.get('password')
         
         
-        if name_exists_in_database(name, password):
-            error_message = "User already exists in the system. Please another details"
-            return redirect(url_for('error_page', error_message=error_message))
+        if name_exists_in_database(name, password) == 1:
+            error = "User already exists"
+            return render_template('signup.html', error = error)
         else:
-            insert_username(name, password)       
+            if insert_username(name, password):
+                saved = "User data successfully saved"
+                return render_template('signup.html', saved = saved)
+            else:
+                error2 = "Failed to save data"
+                return render_template('signup.html', error2 = error2)   
+
+    saved = "User data successfully saved"    
     return render_template('signup.html')
         
 if __name__ == '__main__':

@@ -20,13 +20,8 @@
         <input type="button" value="save" onclick="submitForm()">
     </form>
     <br><br><br>
-    {% if error_message %}
-        <p style="font-family: 'Courier New', Courier, monospace;color: red"> {{ error_message }}</p>
-    {% endif %}
-    {% if saved %}
-        <p style="font-family: 'Courier New', Courier, monospace; color: green;">{{ saved }}</p>
-    {% endif %}
-    <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: blue;">Go to <a href="/"> homepage </a></p>
+
+
 
 
     <script>
@@ -55,5 +50,19 @@
             });
         }
     </script>
+    {% if error %}
+        <p style="font-family: 'Courier New', Courier, monospace;color: red"> {{ error }}</p>
+    {% endif %}
+    {% if saved %}
+        <p style="font-family: 'Courier New', Courier, monospace; color: green;">{{ saved }}</p>
+    {% endif %}
+    {% if error2 %}
+        <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error2 }}</p>
+    {% endif %}
+
+    <marquee behavior="" direction=""><p style="font-family:'Courier New', Courier, monospace; color: brown;"><b>PAGE STILL UNDER DEVELOPMENT!!!</b></p></marquee> 
+
+
+<p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: blue;">Go to <a href="/"> homepage </a></p>
 </body>
 </html>
