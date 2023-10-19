@@ -110,7 +110,7 @@ print("pineapple" in x)
 #operator precedence
 this describes the order in which the operations are performed i.e from highly prioritized
 
-This is the order , from highly to lowly:
+This is the order , from highly to lowly prioritiezed:
 Operator
 
 ()
