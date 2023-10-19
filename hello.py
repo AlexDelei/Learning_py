@@ -1,9 +1,10 @@
 from flask import request, render_template
 
 def get_hello_message():
-    text = "pineappple"
-    x = text.upper()
-    return x
+    text = "alex delei"
+    x = text.split()   
+    firstname = x[0]
+    return firstname
 def formatting():
     a, b, c = "yoghurt", "soda", "cake"
     f, g, h = 100, 180, 50

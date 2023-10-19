@@ -23,6 +23,11 @@ def name_exists_in_database(name, password):
     result = cur.fetchone()
     cur.close()
     return result is not None
+def delete_acc(name):
+    cur = mysql.cursor()
+    cur.execute("DELETE FROM users WHERE username = %s", (name,))
+    mysql.commit()
+    cur.close()
 @app.route('/')
 def hello():
     message = get_hello_message()
@@ -39,8 +44,10 @@ def process():
         name = name.title()
 
         if name_exists_in_database(name, password):
-            length = len(name)
-            return render_template('signin.html', name = name, length = length)
+            name2 = name.split()
+            length = len(name2[1])
+            firstname = name2[1]
+            return render_template('signin.html', name = name, length = length, firstname = firstname)
         elif name_exists_in_database(name, password) == 0:
             return redirect(url_for('error_page'))
     else:
