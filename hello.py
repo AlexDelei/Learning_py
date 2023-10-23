@@ -3,7 +3,7 @@ from flask import request, render_template
 def get_hello_message():
     text = "alex delei"
     x = text.split()   
-    firstname = x[0]
+    firstname = len(x)
     return firstname
 def formatting():
     a, b, c = "yoghurt", "soda", "cake"
