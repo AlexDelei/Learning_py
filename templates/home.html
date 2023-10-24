@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask the test app</title>
+    <title style="font-family: 'Courier New', Courier, monospace;">SHOE HUB</title>
     <link rel="stylesheet" href="../static/files/css/lightslider.css">
     <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/files/style.css">
@@ -13,13 +13,59 @@
     <script src="../static/files/js/script.js"></script>
 </head>
 <body style="background-image: url('../static/files/images/paper.jpg');">
-    <center><h1>Printing python output on a webpage</h1></center>
+    {% include 'nav2.html' %}
     <section class="row">
         <div class="col-md-6">
-            <img src="../static/files/images/trees-3294681_1280.jpg" alt="" width="100%" height="350px">
+            <div class="carousel" id="myCarousel" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../static/files/images/shoes/shoes-2425122__340.jpg" alt="" width="100%" height="350px">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/files/images/shoes/istockphoto-1436061648-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/files/images/shoes/istockphoto-1436061634-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/files/images/shoes/istockphoto-1411209215-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                </div>
+                <div>
+                    <a href="#myCarousel" class="carousel-control-prev" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a href="#myCarousel" class="carousel-control-next" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
-            <img src="../static/files/images/forest-868715_1280.jpg" alt="" width="100%" height="350px">
+            <div class="carousel" id="myCarousel2" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../static/files/images/shoes/istockphoto-1406244574-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/files/images/shoes/istockphoto-1366410650-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/files/images/shoes/istockphoto-1344752596-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/files/images/shoes/istockphoto-187310279-612x612.jpg" alt="" width="100%" height="350px">
+                    </div>
+                </div>
+                <div>
+                    <a href="#myCarousel2" class="carousel-control-prev" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a href="#myCarousel2" class="carousel-control-next" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
     <br>
@@ -28,42 +74,5 @@
     <p style="font-family: fantasy;"> {{ message2 }}</p>
     <br>
     <p style="font-size: medium;">{{ message3 }}</p>
-
-    <center>
-        <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
-            <br><br>
-        <form action="/process" method="post" align="center">
-            {% if error_message8 %}
-                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message8 }}</p>
-            {% endif %}
-            <input type="text" name="name" placeholder="Enter your username"><br><br><br>
-            <input type="password" name="password" placeholder="Enter your password"><br><br><br>
-            {% if error_message7 %}
-                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message7 }}</p>
-            {% endif %}
-            <input type="submit" value="Login" style="font-family: 'Courier New', Courier, monospace; background-color: rgb(244, 176, 176);">
-        </form>
-        <br><br>
-        </div>
-    </center>
-    <br>
-    {% if name %}
-        <p style="font-family: fantasy;">Hi, {{ name.title() }}, Welcome to my webpage ( ^ _ ^ )</p>
-        <p style="font-family: 'Courier New', Courier, monospace; color: green;">{{ success }}</p>
-    {% endif %}
-
-    {% if error_message4 %}
-        <p style="font-family: 'Courier New', Courier, monospace;color: red;" align="center"><b>{{ error_message4 }}</b></p>
-    {% endif %}
-
-    {% if error_message5 %}
-        <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ error_message5 }}</p>
-    {% endif %}
-    
-    {% if error_message6 %}
-        <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ error_message6 }}</p>
-    {% endif %}
-    <br><br>
-    <p style="font-family: 'Courier New', Courier, monospace;color: blue;">Create your account here <a href="/signin">signup</a></p>
 </body>
 </html>

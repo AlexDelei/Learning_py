@@ -34,7 +34,7 @@ def hello():
     message2 = formatting()
     message3 = fib()
     return render_template('home.html', message= message, message2=message2, message3=message3)
-@app.route('/process', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def process():
     if request.method == 'POST':
         message = get_hello_message()
@@ -52,17 +52,18 @@ def process():
 
         if name == '':
                 error_message8 = "Please insert your username"
-                return render_template('home.html', message= message, message2=message2, error_message8 = error_message8)
+                return render_template('login.html', message= message, message2=message2, error_message8 = error_message8)
         elif password == '':
                 error_message7 = "Please insert your username and PASSWORD!"
-                return render_template('home.html', message= message, message2=message2, error_message7 = error_message7)            
+                return render_template('login.html', message= message, message2=message2, error_message7 = error_message7)            
         elif cursor.rowcount == 0:
-            error_message4 = "Oops! No details found for this guy!"
-            return render_template ('home.html', error_message4 = error_message4)
+            error_message4 = "Oops! Please confirm your details"
+            return render_template ('login.html', error_message4 = error_message4)
         #elif name_exists_in_database(name, password) == 0:
          #   return redirect(url_for('error_page')) 
         else:
             return redirect(url_for('shoe_hub', name = name))
+    return render_template('login.html')
  
 @app.route('/shoehub', methods=['POST', 'GET'])
 def shoe_hub():
@@ -73,12 +74,12 @@ def shoe_hub():
             if length == 1:
                 firstname = name[0]
                 len2 = len(name[0])
-                return render_template('signin.html', firstname = firstname, len2 = len2)
+                return render_template('products.html', firstname = firstname, len2 = len2)
             elif length >= 2:
                 firstname = name[1]
                 len2 = len(firstname)
-                render_template('signin.html', firstname = firstname, len2 = len2)
-            return render_template('signin.html', firstname = firstname, len2 = len2 )
+                render_template('products.html', firstname = firstname, len2 = len2)
+            return render_template('products.html', firstname = firstname, len2 = len2 )
 @app.route('/error')
 def error_page():
     return render_template('error.html')
@@ -89,6 +90,7 @@ def signin_boy():
         name = data.get('name')
         password = data.get('password')
 
+        
         connection = pymysql.connect(host='localhost', password='', user='root', database='tester')
         cursor = connection.cursor()
         if name_exists_in_database(name, password):

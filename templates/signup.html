@@ -13,9 +13,10 @@
     <script src="../static/files/js/script.js"></script>
 </head>
 <body style="background-image: url('../static/files/images/paper.jpg');">
-    <center><h1>Lets do this ASAP!</h1></center>
+    {% include 'nav3.html' %}
+    <br>
     <center>
-        <div class="col-md-3" align="center" style="background-color: antiquewhite; border-radius: 7px;">
+        <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
             <br><br>
          <form id="putForm" action="/signin" method="POST">
             <input type="text" id="name" name="name" placeholder="Enter your name"><br><br><br>

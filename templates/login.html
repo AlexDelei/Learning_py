@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/files/css/lightslider.css">
+    <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/files/style.css">
+    <script src="../static/files/js/bootstrap.bundle.js"></script>
+    <script src="../static/files/js/jquery.js"></script>
+    <script src="../static/files/js/lightslider.js"></script>
+    <script src="../static/files/js/script.js"></script>
+</head>
+<body style="background-image: url('../static/files/images/paper.jpg');">
+    {% include 'nav4.html' %}
+    <br>
+    <center>
+        <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
+            <br><br>
+        <form action="/login" method="post" align="center">
+            {% if error_message8 %}
+                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message8 }}</p>
+            {% endif %}
+            <input type="text" name="name" placeholder="Enter your username"><br><br><br>
+            <input type="password" name="password" placeholder="Enter your password"><br><br><br>
+            {% if error_message7 %}
+                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message7 }}</p>
+            {% endif %}
+            <input type="submit" value="Login" style="font-family: 'Courier New', Courier, monospace; background-color: rgb(244, 176, 176); box-shadow: inset;">
+        </form>
+        <br><br>
+        </div>
+    </center>
+    <br>
+    {% if name %}
+        <p style="font-family: fantasy;">Hi, {{ name.title() }}, Welcome to my webpage ( ^ _ ^ )</p>
+        <p style="font-family: 'Courier New', Courier, monospace; color: green;">{{ success }}</p>
+    {% endif %}
+
+    {% if error_message4 %}
+        <p style="font-family: 'Courier New', Courier, monospace;color: red;" align="center"><b>{{ error_message4 }}</b></p>
+    {% endif %}
+
+    {% if error_message5 %}
+        <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ error_message5 }}</p>
+    {% endif %}
+    
+    {% if error_message6 %}
+        <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ error_message6 }}</p>
+    {% endif %}
+    <br><br>
+</body>
+</html>
