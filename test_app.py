@@ -90,7 +90,6 @@ def signin_boy():
         name = data.get('name')
         password = data.get('password')
 
-        
         connection = pymysql.connect(host='localhost', password='', user='root', database='tester')
         cursor = connection.cursor()
         if name_exists_in_database(name, password):
