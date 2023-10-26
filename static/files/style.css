@@ -7,3 +7,8 @@ input
     background-color: antiquewhite;
     border-radius: 7px;
 }
+div a:hover
+{
+    background-color: aliceblue;
+    border-radius: 7px;
+}

@@ -1,8 +1,9 @@
 import pymysql
 from flask import *
+from flask_session import Session
 import json
 from pymysql import NULL
-from hello import get_hello_message, formatting, fib
+from hello import get_hello_message, formatting, fib, time
 
 app = Flask(__name__)
 
@@ -28,18 +29,23 @@ def delete_acc(name):
     cur.execute("DELETE FROM users WHERE username = %s", (name,))
     mysql.commit()
     cur.close()
+app.secret_key = "AW_r%@jN*HU4AW_r%@jN*HU4AW_r%@jN*HU4"
+
 @app.route('/')
 def hello():
     message = get_hello_message()
     message2 = formatting()
     message3 = fib()
-    return render_template('home.html', message= message, message2=message2, message3=message3)
+    c_time = time()
+    return render_template('home.html', message= message, message2=message2, message3=message3, c_time = c_time)
 @app.route('/login', methods=['POST', 'GET'])
 def process():
     if request.method == 'POST':
         message = get_hello_message()
         message2 = formatting()
+        c_time = time()
         name = request.form['name']
+        session['name'] = name
         password = request.form['password']
         name = name.title()
 
@@ -67,19 +73,24 @@ def process():
  
 @app.route('/shoehub', methods=['POST', 'GET'])
 def shoe_hub():
+        if 'name' not in session:
+            return redirect('/login')
+
+        name = session.get('name')
+        c_time = time()
         if request.method == 'GET':
-            name = request.args.get('name')
-            name = name.split()
-            length = len(name)
-            if length == 1:
-                firstname = name[0]
-                len2 = len(name[0])
-                return render_template('products.html', firstname = firstname, len2 = len2)
-            elif length >= 2:
-                firstname = name[1]
-                len2 = len(firstname)
-                render_template('products.html', firstname = firstname, len2 = len2)
-            return render_template('products.html', firstname = firstname, len2 = len2 )
+            if name:
+                name = name.split()
+                length = len(name)
+                if length == 1:
+                    firstname = name[0]
+                    len2 = len(name[0])
+                    return render_template('products.html', firstname = firstname, len2 = len2, c_time = c_time)
+                elif length >= 2:
+                    firstname = name[1]
+                    len2 = len(firstname)
+                    render_template('products.html', firstname = firstname, len2 = len2, c_time = c_time)
+                return render_template('products.html', firstname = firstname, len2 = len2 ,c_time = c_time)
 @app.route('/error')
 def error_page():
     return render_template('error.html')

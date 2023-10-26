@@ -1,4 +1,5 @@
 from flask import request, render_template
+import datetime
 
 def get_hello_message():
     text = "alex delei"
@@ -20,3 +21,6 @@ def fib():
     }
     x = person.values()
     return x
+def time():
+    current_time = datetime.datetime.now().time()
+    return current_time

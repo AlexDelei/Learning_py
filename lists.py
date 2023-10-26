@@ -55,7 +55,7 @@ print(list1[2])
 #RANGE OF INDEXES
 list5 = list(("Being a", "student in", "University is ", "a good feeling"))
 print(list5[1:3])
-#output = 'student in', 'University is ']
+#output = ['student in', 'University is ']
 
 #Range of Negative indexes
 """
@@ -229,3 +229,126 @@ for x in list5:
         
 
 print(newlist)
+
+"""
+sorting lists - lists have a sort() functions that sorts the list alphabetically, ascending order or  by default
+
+sort()
+"""
+
+my_list = list(("mangoes", "pawpaws", "apple", "strawberries", "passionfruits", "watermelons", "tomatoes"))
+my_list.sort()
+print(my_list)
+#output = ['apple', 'mangoes', 'passionfruits', 'pawpaws', 'strawberries', 'tomatoes', 'watermelons']
+"""
+sorting numerically
+"""
+list2 = list((340, 567, 234, 109, 790, 675, 289, 987, 111, 42))
+list2.sort()
+print(list2)
+#output = [42, 109, 111, 234, 289, 340, 567, 675, 790, 987]
+"""
+sorting in a descending order
+"""
+list3 = list(("mangoes", "pawpaw", "apple", "strawberries", "passionfruits", "watermelons", "tomatoes"))
+list3.sort(reverse= True)
+print(list3)
+#output = ['watermelons', 'tomatoes', 'strawberries', 'pawpaw', 'passionfruits', 'mangoes', 'apple']
+list4 = list((340, 567, 234, 109, 790, 675, 289, 987, 111, 42))
+list4.sort(reverse=True)
+print(list4)
+#output = [987, 790, 675, 567, 340, 289, 234, 111, 109, 42]
+
+"""
+reverse() function reverses the current sorting of elements in the list
+"""
+list3.reverse()
+print(list3) # = ['apple', 'mangoes', 'passionfruits', 'pawpaw', 'strawberries', 'tomatoes', 'watermelons']
+list3.reverse()
+print(list3)# = ['watermelons', 'tomatoes', 'strawberries', 'pawpaw', 'passionfruits', 'mangoes', 'apple']
+
+"""
+custom sort function
+The function will return a number that will be used to sort the list (the lowest number first)
+"""
+def myfunc(n):
+    return abs(n - 50)
+
+list5 = list((200, 345, 423, 90, 235))
+list5.sort(key= myfunc)
+print(list5)
+"""
+sort() function is case sensitive resulting in all capital letters being sorted before lowercase letters
+"""
+list6 = list(("banana", "dragon fruits", "Oranges", "Kiwi", "cherry"))
+list6.sort()
+print(list6)
+#output = ['Kiwi', 'Oranges', 'banana', 'cherry', 'dragon fruits']
+"""
+performing case-insensititve sorting
+str.lower is used as a key functoion
+
+"""
+list6
+list6.sort(key=str.lower)
+print(list6)
+#output = ['banana', 'cherry', 'dragon fruits', 'Kiwi', 'Oranges']
+"""
+copying a list with a copy() function
+"""
+list7 = ["apple", "juice", "melon"]
+#list8 = list7.copy()
+#print(list8)
+#output = AttributeError: 'list' object has no attribute 'copy'
+"""
+an alternative way which is working is using list() function
+"""
+list7 = ["apple", "juice", "melon"]
+list8 = list(list7)
+print(list8)
+#output = ['apple', 'juice', 'melon']
+
+"""
+Joining , concatinating two lists
+"""
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
+list3 = list1 + list2
+print(list3)
+# output = ['a', 'b', 'c', 1, 2, 3]
+
+"""
+another way is appending the elements one by one
+"""
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
+
+for x in list2:
+    list1.append(x)
+
+print(list1)
+#output = ['a', 'b', 'c', 1, 2, 3]
+
+"""
+Not forgetting the extend() function which appends the elements of one list to the other
+"""
+list1 = ["a", "b", "c"]
+list2 = [9, 8, 7]
+
+list1.extend(list2)
+print(list1)
+#output =  ['a', 'b', 'c', 9, 8, 7]
+
+"""
+The lists in-built functions/methods
+
+insert()        -   adds item/items at specified position in a list
+append()        -   adds item at the end of a list
+list()          -   inbuilt for creating a new list
+clear()         -   clears the contents of a list
+count()         -   counts the number of elements specified in a value
+remove()        -   removes the specified list item
+pop()           -   removes the item at the index provided
+sort()          -    sorts the list in a certain order
+reverse()       -   this reverses the way the current list is sorted
+"""
