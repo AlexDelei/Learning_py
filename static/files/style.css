@@ -12,3 +12,16 @@ div a:hover
     background-color: aliceblue;
     border-radius: 7px;
 }
+@keyframes example{
+    from {background-color:  rgb(244, 176, 176) ;}
+    to {background-color: rgb(0, 85, 255);}
+}
+
+input [type = "submit"]
+{
+    position: relative;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
+    animation-direction: alternate-reverse;
+}

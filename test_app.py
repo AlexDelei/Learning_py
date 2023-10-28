@@ -62,6 +62,9 @@ def process():
         elif password == '':
                 error_message7 = "Please insert your username and PASSWORD!"
                 return render_template('login.html', message= message, message2=message2, error_message7 = error_message7)            
+        elif len(password) < 8:
+            error_message9 = "Password must be atleast 8 characters"
+            return render_template('login.html', message= message, message2=message2, error_message9 = error_message9)
         elif cursor.rowcount == 0:
             error_message4 = "Oops! Please confirm your details"
             return render_template ('login.html', error_message4 = error_message4)

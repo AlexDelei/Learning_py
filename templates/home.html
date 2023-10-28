@@ -11,6 +11,7 @@
     <script src="../static/files/js/jquery.js"></script>
     <script src="../static/files/js/lightslider.js"></script>
     <script src="../static/files/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/ecc22ccf0c.js" crossorigin="anonymous"></script>
 </head>
 <body style="background-image: url('../static/files/images/paper.jpg');">
     {% include 'nav2.html' %}
@@ -69,14 +70,46 @@
         </div>
     </section>
     <br>
-    <p style="font-family: 'Courier New', Courier, monospace;" align="right">{{ c_time }}</p>
+    <p style="font-family: 'Courier New', Courier, monospace;" align="right">Last Active {{ c_time }}</p>
     <br>
-    <p style="font-family: fantasy;">{{ message }}</p>
-    <br>
-    <p style="font-family: fantasy;"> {{ message2 }}</p>
-    <br>
-    <p style="font-size: medium;">{{ message3 }}</p>
-    <br><br>
     
+    <section class="row">
+        <div class="col-md-7" style="background-color: transparent;">
+            <div class="card" style="background-color: rgb(219, 238, 238); border-radius: 7px;">
+                <div class="card-item">
+                    <div class="card-body">
+                        <h4 class="card-title" align="center">Why Sneakers?</h4>
+                        <p class="card-text" align="center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin-bottom: 28px;">
+                            Sneakers are designed to be lightweight, but they don't lock in moisture and can be difficult to wear on warm days. Shoes, on the other hand, can be heavier and more stable. Both types of shoes can be made of different materials, such as leather, suede, or synthetic materials.
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-md-7">
+
+        </div>
+        <div class="col-md-5">
+            <div class="card" style="background-color: rgb(219, 238, 238); border-radius: 7px;" align="right">
+                <div class="card-item">
+                    <div class="card-body">
+                        <h4 class="card-title" align="center">The Most expensive Prada shoes</h4>
+                        <p class="card-text" align="center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                            Prada Crocodile Leather Sneakers – $2,900 <br>
+
+                            The boot features a rubber lug sole and shearling lining for ultimate warmth retention. We are suckers for this classic leather appearance on a contemporary sneaker silhouette.
+                        
+                        </p>
+                        <img src="../static/files/images/prada-crocodile-leather-sneakers.jpg" alt="" class="card-img-top" width="100%" height="350px" style="background-color: transparent;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
 </body>
 </html>
