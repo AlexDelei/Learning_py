@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="../static/files/css/lightslider.css">
+    <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/files/style.css">
+    <script src="../static/files/js/bootstrap.bundle.js"></script>
+    <script src="../static/files/js/jquery.js"></script>
+    <script src="../static/files/js/lightslider.js"></script>
+    <script src="../static/files/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/ecc22ccf0c.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-image: url('../static/files/images/paper.jpg');">
+    <center><h1>Network status</h1></center>
+    <a href="/">go back</a>
+    <p id="statusMessage"></p>
+
+    <script>
+      window.addEventListener('online', updateStatus);
+      window.addEventListener('offline', updateStatus);
+  
+      function updateStatus() {
+        var statusMessage = document.getElementById('statusMessage');
+  
+        if (navigator.onLine) {
+          statusMessage.textContent = "You are online!";
+        } else {
+          statusMessage.textContent = "Oops! You are offline. Please check your network connection.";
+        }
+      }
+  
+      // Initial check when the page loads
+      updateStatus();
+    </script>
+
+    <center>
+      <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
+        <br><br>
+        <form action="/test" method="post">
+          <input type="text" placeholder="Your name" style="border-radius: 7px;">
+        </form>
+        <br><br>
+      </div>
+  </center>
+</body>
+</html>

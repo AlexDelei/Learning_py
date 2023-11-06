@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up page</title>
+    <title>Sign up</title>
     <link rel="stylesheet" href="../static/files/css/lightslider.css">
     <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/files/style.css">
@@ -20,58 +20,60 @@
         <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
             <br><br>
          <form id="putForm" action="/signin" method="POST">
+
+            {% if error %}
+                <p style="font-family: 'Courier New', Courier, monospace;color: red"><b> {{ error }} </b></p>
+            {% endif %}
+            {% if error3 %}
+                <p style="font-family: 'Courier New', Courier, monospace;color: red;"><b> {{ error3}} </b></p>
+            {% endif %}
+            {% if error4 %}
+                <p style="font-family: 'Courier New', Courier, monospace;color: red;">{{ error4 }}</p>
+            {% endif %}
+            {% if error7 %}
+                <p style="font-family: 'Courier New', Courier, monospace;color: red;">{{ error7 }}</p>
+            {% endif %}
             <input type="text" id="name" name="name" placeholder="Enter your name"><br><br><br>
+            {% if error6 %}
+                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error6 }}</p>
+            {% endif %}
+            <input type="email" name="email" placeholder="Enter your email"><br><br><br>
+            {% if error2 %}
+                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error2 }}</p>
+            {% endif %}
+            {% if error5 %}
+                <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error5 }}</p>
+            {% endif %}
+
             <input type="password"  id="password" name="password" placeholder="Enter your password"><br><br><br>
-            <input type="button" value="save" onclick="submitForm()" style="color: rgb(35, 37, 35); background-color: rgb(3, 173, 3);">
+            <input type="submit" value="save" onclick="submitForm()" style="color: rgb(35, 37, 35); background-color: rgb(3, 173, 3);">
         </form>
+        {% if saved %}
+            <p style="font-family: 'Courier New', Courier, monospace; color: green;" align="center"><b>{{ saved }}</b></p>
+        {% endif %}
         <br><br>
        </div>
-    </center>  
+
+    </center> 
+    <p id="successMessage" style="color: green;"></p>
     <br><br><br>
 
 
 
 
-    <script>
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const password = document.getElementById('password').value;
-    
-            fetch('/signin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, password }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
-    {% if error %}
-        <p style="font-family: 'Courier New', Courier, monospace;color: red"> {{ error }}</p>
-    {% endif %}
-    {% if saved %}
-        <p style="font-family: 'Courier New', Courier, monospace; color: green;">{{ saved }}</p>
-    {% endif %}
-    {% if error3 %}
-        <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error3 }}</p>
-    {% endif %}
 
 
-    <marquee behavior="" direction=""><p style="font-family:'Courier New', Courier, monospace; color: brown;"><b>PAGE STILL UNDER DEVELOPMENT!!!</b></p></marquee> 
 
 
-<p style="font-family: 'Courier New', Courier, monospace;color: blue;" align="center"><b> Back to </b><a href="/" style="font-family: 'Courier New', Courier, monospace;"  > <b>homepage </b></a></p>
+<center><p style="list-style: disc;">----------------or-----------------</p></center>
+<center>
+    <div class="col-md-2" style="background-color:rgb(243, 240, 238); border-radius: 7px ;">
+        <br><br>
+        <span style="font-size: 20px; color: rgb(115, 255, 0);">
+            <i class="fa-brands fa-google"></i>
+        </span>
+        <br><br>
+    </div>
+</center>
 </body>
 </html>

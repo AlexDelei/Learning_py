@@ -1,33 +1,81 @@
-<section class="row">
-    <div class="navbar navbar-expand-lg" style="background-color: antiquewhite;">
-        <a href="/" class="navbar-brand text-dark" style="font-family: fantasy;">
-            <span style="font-size: 25px; color: rgb(116, 79, 113);">
-                <i class="fa-solid fa-shoe-prints"></i>
-            </span>
-            SHOE HUB
-        </a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-nav">
-            <div class="collapse navbar-collapse" id="navbar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="font-family: 'Courier New', Courier, monospace;">SHOE HUB</title>
+    <link rel="stylesheet" href="../static/files/css/lightslider.css">
+    <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/files/style.css">
+    <script src="../static/files/js/bootstrap.bundle.js"></script>
+    <script src="../static/files/js/jquery.js"></script>
+    <script src="../static/files/js/lightslider.js"></script>
+    <script src="../static/files/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/ecc22ccf0c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="row">
+        <div class="navbar navbar-expand-lg" style="background-color: antiquewhite;">
+            <a href="/" class="navbar-brand text-dark" style="font-family: fantasy;">
+                <span style="font-size: 25px; color: rgb(116, 79, 113);">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                </span>
+                SHOE CO™
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="navbar-nav" style="justify-content: center;">
+                <div class="collapse navbar-collapse" id="navbar">
+                    <div class="statusMessage">
+                        <p id="statusMessage" style="color: red; margin: 0 10px; font-weight: bold; font-family: 'Courier New', Courier, monospace;" align="center"></p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="ms-auto">
             <div class="navbar-nav">
-                <a href="/signin"  class="nav-link active" style="font-family: 'Courier New', Courier, monospace; color: blue;">
-                    <span style="font-size: 25px; color: rgb(68, 239, 80);">
-                        <i class="fa-solid fa-user-plus fa-flip"></i>
-                    </span>
-                    <b>Signup | </b>
-                </a>
-                <a href="/login" class="nav-link" style="font-family: 'Courier New', Courier, monospace;color:rgb(4, 76, 149);">
-                    <span style="font-size: 25px; color: blue;">
-                        <i class="fa-solid fa-user fa-bounce"></i>
-                    </span>
-                    <b>Login</b>
-                </a>
+                <div class="nav-link">
+                    <a href="/test">Test</a>
+                </div>
+            </div>
+            <div class="ms-auto">
+                <div class="navbar-nav">
+                    <a href="/signin"  class="nav-link active" style="font-family: 'Courier New', Courier, monospace; color: blue;">
+                        <span style="font-size: 25px; color: rgb(68, 239, 80);">
+                            <i class="fa-solid fa-user-plus fa-flip"></i>
+                        </span>
+                        <b>Signup | </b>
+                    </a>
+                    <a href="/login" class="nav-link" style="font-family: 'Courier New', Courier, monospace;color:rgb(4, 76, 149);">
+                        <span style="font-size: 25px; color: blue;">
+                            <i class="fa-solid fa-user fa-bounce"></i>
+                        </span>
+                        <b>Login</b>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <script>
+        function updateStatus() {
+          var statusMessage = document.getElementById('statusMessage');
+    
+          if (navigator.onLine) 
+          {
+            statusMessage.textContent = "You are online!";
+            statusMessage.style.color = "green"; // Change style for online
+          } 
+          else 
+          {
+            statusMessage.textContent = "Oops! You are offline. Please check your network connection.";
+            statusMessage.style.color = "red"; // Change style for offline
+          }
+        }
+    
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+    
+        updateStatus(); // Initial check when the page loads
+      </script>
+</body>
+</html>

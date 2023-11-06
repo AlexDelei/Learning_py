@@ -1,6 +1,6 @@
 <section class="row">
-    <div class="navbar navbar-expand-lg" style="background-color: antiquewhite; position: fixed; top: 0; width: 100%;">
-        <a href="#" class="navbar-brand text-dark" style="font-family: fantasy;">SHOE HUB</a>
+    <div class="navbar navbar-expand-lg" style="background-color: antiquewhite; position: fixed; top: 0;">
+        <a href="#" class="navbar-brand text-dark" style="font-family: fantasy;">SHOE CO™</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,8 +16,10 @@
         <div class="ms-auto">
             <div class="navbar-nav">
             {% if firstname %}
-                <h3 style="font-family: 'Courier New', Courier, monospace;color: green;">Welcome {{ firstname }}</h3>
+                <h3 style="font-family: 'Courier New', Courier, monospace;color: green;">Welcome {{ firstname.title() }}</h3>
             {% endif %}
+            <br>
+            <a href="/login" class="nav-link" style="color: black;">Logout</a>
             </div>
         </div>
     </div>

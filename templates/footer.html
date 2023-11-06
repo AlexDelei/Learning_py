@@ -2,17 +2,26 @@
     <div style="background-color: rgb(225, 208, 186);">
     <!-- all styles of icons (in Font Awesome Classic by default) -->
 
-    <span style="font-size: 25px; color: blueviolet; margin-left: 10px;">
-        <i class="fa-brands fa-instagram"></i>
-    </span>
-    <br>
-    <span style="font-size: 25px; color: rgb(45, 46, 47); margin-left: 10px;">
-        <i class="fa-brands fa-x-twitter"></i>
-    </span>
-    <br>
-    <span style="font-size: 25px; color: rgb(13, 224, 30); margin-left: 10px;">
-        <a href=""></a><i class="fa-brands fa-whatsapp"></i>
-    </span>
+        <span style="font-size: 25px; color: blueviolet; margin-left: 10px;">
+            <i class="fa-brands fa-instagram"></i>
+        </span>
+        <br>
+        <span style="font-size: 25px; color: rgb(45, 46, 47); margin-left: 10px;">
+            <i class="fa-brands fa-x-twitter"></i>
+        </span>
+        <br>
+        <span style="font-size: 25px; color: rgb(13, 224, 30); margin-left: 10px;">
+            <a href=""></a><i class="fa-brands fa-whatsapp"></i>
+        </span>
+        <br>
+        <a href="/change_password" style="color: blue;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Need to change Password?</a>
+
+        {% if time_2 %}
+            <p>Last logged in: {{ time_2 }} hr ago</p>
+        {% endif %}
+        {% if time_3 %}
+            <p>Last logged in: {{ time_3 }} hrs ago</p>
+        {% endif %}
     </div>
 </section>
 

@@ -124,3 +124,16 @@ Looping through the index numbers which stand for the tuple items
 thistuple = ("apple", "banana", "cherry")
 for i in range(len(thistuple)):
     print(thistuple[i])
+"""
+count() function
+defn and usage:
+The count() method returns the number of times a specified value appears in the tuple.
+
+syntax:
+tuple.count(value)
+"""
+thistuple = (1, 3, 7, 8, 7, 5, 4, 6, 8, 5)
+
+x = thistuple.count(5)
+
+print(x)

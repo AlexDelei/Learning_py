@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password_Update</title>
+    <link rel="stylesheet" href="../static/files/css/lightslider.css">
+    <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/files/style.css">
+    <script src="../static/files/js/bootstrap.bundle.js"></script>
+    <script src="../static/files/js/jquery.js"></script>
+    <script src="../static/files/js/lightslider.js"></script>
+    <script src="../static/files/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/ecc22ccf0c.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-image: url('../static/files/images/paper.jpg');">
+    {% include 'nav5.html' %}
+    <br><br>
+   <center>
+        <div class="col-md-3" style="background-color: rgb(225, 208, 186); border-radius: 7px;;">
+            <br><br>
+            <form action="/change_password" method="post">
+                {% if password_changed %}
+                    <p style="font-family: 'Courier New', Courier, monospace;color: green;"> {{password_changed}} </p>
+                {% endif %}
+                {% if error1 %}
+                    <p style="font-family: 'Courier New', Courier, monospace;color: red;"><b> {{ error1 }} </b></p>
+                {% endif %}
+                {% if incorrect %}
+                    <p style="font-family: 'Courier New', Courier, monospace;color: red;"> {{incorrect}} </p>
+                {% endif %}
+                <input type="password" placeholder="Your current password" name="current_pass"  style="border-radius: 7px;">
+                <br><br><br>
+                {% if error3 %}
+                    <p style="font-family: 'Courier New', Courier, monospace;color: red;"> {{error3}} </p>
+                {% endif %}
+                <input type="password" placeholder="New password" name="new_pass" style="border-radius: 7px;">
+                <br><br><br>
+                <input type="submit" value="Update" style="background-color: aquamarine;border-radius: 7px;">
+                <br>
+                {% if error2 %}
+                    <p style="color: purple;">{{error2}}</p>
+                {% endif %}
+            </form>
+            <br><br>
+        </div>
+    </center> 
+
+
+</body>
+</html>

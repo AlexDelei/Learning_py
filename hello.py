@@ -1,5 +1,6 @@
 from flask import request, render_template
 import datetime
+import pymysql
 
 def get_hello_message():
     text = "alex delei"
@@ -22,5 +23,22 @@ def fib():
     x = person.values()
     return x
 def time():
-    current_time = datetime.datetime.now().time()
+    current_time = datetime.datetime.now()
     return current_time
+
+number = 100
+ldt = number % 100
+lldt = ldt % 10
+print("Last digit of %d is %d" % (number, lldt))
+
+def get_last_login_time(username):
+    connection = pymysql.connect(host='localhost', user='root', password='', database='tester')
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT last_login FROM users WHERE username = %s", (username,))
+    last_login = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+
+    return last_login[0] if last_login else None
