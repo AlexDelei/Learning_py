@@ -31,11 +31,11 @@ ldt = number % 100
 lldt = ldt % 10
 print("Last digit of %d is %d" % (number, lldt))
 
-def get_last_login_time(username):
+def get_last_login_time(email):
     connection = pymysql.connect(host='localhost', user='root', password='', database='tester')
     cursor = connection.cursor()
 
-    cursor.execute("SELECT last_login FROM users WHERE username = %s", (username,))
+    cursor.execute("SELECT last_login FROM users WHERE email = %s", (email,))
     last_login = cursor.fetchone()
 
     cursor.close()

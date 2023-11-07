@@ -20,8 +20,8 @@
         <div class="col-md-3" style="background-color: rgb(225, 208, 186); border-radius: 7px;;">
             <br><br>
             <form action="/change_password" method="post">
-                {% if password_changed %}
-                    <p style="font-family: 'Courier New', Courier, monospace;color: green;"> {{password_changed}} </p>
+                {% if saved %}
+                    <p style="font-family: serif;color: green;"> {{saved}} </p>
                 {% endif %}
                 {% if error1 %}
                     <p style="font-family: 'Courier New', Courier, monospace;color: red;"><b> {{ error1 }} </b></p>
@@ -34,6 +34,9 @@
                 {% if error3 %}
                     <p style="font-family: 'Courier New', Courier, monospace;color: red;"> {{error3}} </p>
                 {% endif %}
+                {% if error4 %}
+                    <p style="font-family: 'Courier New', Courier, monospace;color: red;"> {{error4}} </p>
+                {% endif %}
                 <input type="password" placeholder="New password" name="new_pass" style="border-radius: 7px;">
                 <br><br><br>
                 <input type="submit" value="Update" style="background-color: aquamarine;border-radius: 7px;">
@@ -41,11 +44,16 @@
                 {% if error2 %}
                     <p style="color: purple;">{{error2}}</p>
                 {% endif %}
+                <p>{{ email }}</p>
+                {% if error8 %}
+                    <p style="font-family: serif; color: red;">{{ error8 }}</p>
+                {% endif %}
             </form>
             <br><br>
+ 
         </div>
     </center> 
 
-
+    <p>{{ name }}</p>
 </body>
 </html>

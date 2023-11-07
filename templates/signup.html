@@ -16,6 +16,7 @@
 <body style="background-image: url('../static/files/images/paper.jpg');">
     {% include 'nav3.html' %}
     <br>
+    <p style="font-family:Georgia, 'Times New Roman', Times, serif;color:  rgb(7, 76, 236);font-size: large;" align="center">Create  Account</p>
     <center>
         <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
             <br><br>
@@ -33,10 +34,12 @@
             {% if error7 %}
                 <p style="font-family: 'Courier New', Courier, monospace;color: red;">{{ error7 }}</p>
             {% endif %}
+            <label for="" style="color: orange;">Name*</label><br>
             <input type="text" id="name" name="name" placeholder="Enter your name"><br><br><br>
             {% if error6 %}
                 <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error6 }}</p>
             {% endif %}
+            <label for="" style="color: orange;">Email*</label><br>
             <input type="email" name="email" placeholder="Enter your email"><br><br><br>
             {% if error2 %}
                 <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error2 }}</p>
@@ -44,23 +47,21 @@
             {% if error5 %}
                 <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error5 }}</p>
             {% endif %}
-
+            <label for="" style="color: orange;">Password*</label><br>
             <input type="password"  id="password" name="password" placeholder="Enter your password"><br><br><br>
             <input type="submit" value="save" onclick="submitForm()" style="color: rgb(35, 37, 35); background-color: rgb(3, 173, 3);">
         </form>
         {% if saved %}
-            <p style="font-family: 'Courier New', Courier, monospace; color: green;" align="center"><b>{{ saved }}</b></p>
+            <p style="font-family: serif; color: green;" align="center">{{ saved }}</p>
         {% endif %}
         <br><br>
        </div>
-
+  
     </center> 
     <p id="successMessage" style="color: green;"></p>
     <br><br><br>
 
-
-
-
+    <p>{{email}}</p>
 
 
 

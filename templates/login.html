@@ -16,6 +16,7 @@
 <body style="background-image: url('../static/files/images/paper.jpg');">
     {% include 'nav4.html' %}
     <br>
+    <p style="font-family:Georgia, 'Times New Roman', Times, serif;color:  rgb(7, 76, 236);font-size: large;" align="center">Login</p>
     <center>
         <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
             <br><br>
@@ -23,7 +24,7 @@
             {% if error_message8 %}
                 <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message8 }}</p>
             {% endif %}
-            <input type="text" name="name" placeholder="Enter your username"><br><br><br>
+            <input type="email" name="email" placeholder="Enter your email"><br><br><br>
             {% if error_message9 %}
                 <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message9 }}</p>
             {% endif %}
@@ -32,6 +33,8 @@
                 <p style="font-family: 'Courier New', Courier, monospace; color: red;"> {{ error_message7 }}</p>
             {% endif %}
             <input type="submit" value="Login" style="font-family: 'Courier New', Courier, monospace; background-color: rgb(12, 205, 12); box-shadow: inset;">
+            <br><br>
+            <a href="/new_pass" style="font-family: serif;">Forgot Password?</a>
         </form>
         <br><br>
         </div>
