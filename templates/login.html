@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/files/images/s-golden-7030451_640.jpg" type="image/jpg" sizes="32x32">
     <title>Login</title>
     <link rel="stylesheet" href="../static/files/css/lightslider.css">
     <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
@@ -53,8 +54,8 @@
         <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ error_message5 }}</p>
     {% endif %}
     
-    {% if error_message6 %}
-        <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ error_message6 }}</p>
+    {% if token_err %}
+        <p style="font-family: 'Courier New', Courier, monospace; color: red;" align="center">{{ token_err }}</p>
     {% endif %}
     <br><br>
 </body>

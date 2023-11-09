@@ -13,39 +13,50 @@ from hello import get_hello_message, formatting, fib, time, get_last_login_time
 
 app = Flask(__name__)
 
-mysql = pymysql.connect(host= 'localhost', user= 'root', password= '', database= 'tester')
-def insert_username(name, password):
-    cur = mysql.cursor()
-    try:
-        cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (name, password))
-        mysql.commit()
-        cur.close()
-    except pymysql.IntegrityError:
-        mysql.rollback()
-        return False
-    return True
-def update_last_login_time(email):
-    connection = pymysql.connect(host='localhost', user='root', password='', database='tester')
-    cursor = connection.cursor()
+mysql = pymysql.connect(host='localhost', user='root', password='', database='tester')
 
-    # Update the last_login field in the database for the user
-    current_time = datetime.datetime.now()
-    cursor.execute("UPDATE users SET last_login = %s WHERE email = %s", (current_time, email))
-    connection.commit()
-    cursor.close()
-    connection.close()
-def email_exists_in_database(email):
-    cur = mysql.cursor()
-    cur.execute("SELECT * FROM users WHERE email = %s", (email,))
-    result = cur.fetchone()
-    cur.close()
-    return result is not None
-def save_token_in_database(email, generated_token):
+def execute_query(query, values=None):
     try:
         with mysql.cursor() as cursor:
-            sql = "UPDATE users SET token = %s WHERE email = %s"
-            cursor.execute(sql, (generated_token, email))
-        mysql.commit()
+            if values:
+                cursor.execute(query, values)
+            else:
+                cursor.execute(query)
+            result = cursor.fetchall()  # Fetch the result if required
+            mysql.commit()
+            return result  # Return the result if needed
+    except pymysql.Error as e:
+        print(f"Error executing query: {e}")
+        mysql.rollback()
+
+def insert_username(name, password):
+    try:
+        query = "INSERT INTO users (username, password) VALUES (%s, %s)"
+        execute_query(query, (name, password))
+        return True
+    except pymysql.IntegrityError:
+        print("Error: Integrity Error occurred")
+        return False
+def update_last_login_time(email):
+    # Update the last_login field in the database for the user
+    current_time = datetime.datetime.now()
+    execute_query("UPDATE users SET last_login = %s WHERE email = %s", (current_time, email))
+
+def email_exists_in_database(email):
+   result = execute_query("SELECT * FROM users WHERE email = %s", (email,))
+   return bool(result)
+def save_token_in_database(email, generated_token):
+    try:
+        query = "SELECT * FROM users WHERE email = %s"
+        result = execute_query(query, (email,))
+
+        if result:
+            update_query = "UPDATE users SET token = %s WHERE email = %s"
+            execute_query(update_query, (generated_token, email))
+        else:
+            insert_query = "INSERT INTO users (email, token) VALUES (%s, %s)"
+            execute_query(insert_query, (email, generated_token))
+
     except pymysql.Error as e:
         print(f"Error: {e}")
 def send_welcome_email(email_address, name):
@@ -81,7 +92,7 @@ def pass_update_email(email_address, name):
     <html>
 
     <body>
-        <p>Hi ,{name}</p>
+        <p>Hi {name},</p>
         <p>You successfully changed your password</p>
         <p>If this wasnt you please ensure you update your password as soon as possible ASAP or contact us via support254@gmail.com</p>
         <img src="https://cdn.pixabay.com/photo/2023/10/29/22/11/leaves-8351230_640.jpg" alt="Shoehub Logo">
@@ -101,17 +112,10 @@ def pass_update_email(email_address, name):
         smtp.login('SHOECO254@gmail.com', 'mpaz mtfb isli mxfh')  # Replace with your email credentials
         smtp.send_message(msg)
 def save_reset_token_in_database(email, token):
-    # Connect to the database
-    connection = pymysql.connect(host='localhost', user='root', password='', database='tester')
-    cursor = connection.cursor()
 
     # Save the reset token for the specific email in the database
-    cursor.execute("UPDATE users SET reset_token = %s WHERE email = %s", (token, email))
-    connection.commit()
+    execute_query("UPDATE users SET reset_token = %s WHERE email = %s", (token, email))
 
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
 def send_reset_email(email, reset_token):
     # Set up the email parameters
     msg = EmailMessage()
@@ -138,17 +142,23 @@ def send_reset_email(email, reset_token):
         smtp.login('SHOECO254@gmail.com', 'mpaz mtfb isli mxfh')  # Replace with your email credentials
         smtp.send_message(msg)
 def name_exists_in_database(name):
-    cur = mysql.cursor()
-    cur.execute("SELECT * FROM users WHERE username = %s", (name))
-    result = cur.fetchone()
-    cur.close()
-    return result is not None
+    result = execute_query("SELECT * FROM users WHERE username = %s", (name))
+    return bool(result)
 def password_exists_in_database(password):
-    cur = mysql.cursor()
-    cur.execute("SELECT * FROM users WHERE password = %s", (password))
-    result = cur.fetchone()
-    cur.close()
-    return result is not None
+    result = execute_query("SELECT * FROM users WHERE password = %s", (password))
+    return bool(result)
+def get_username_from_email(email):
+
+
+    # Check if the email exists in the database
+    result = execute_query("SELECT username FROM users WHERE email = %s", (email,))
+    return result[0] if result else None
+    #if result:
+        # Email exists, return the associated username
+     #   return result[0]  # Assuming username is the first column retrieved in the query result
+    #else:
+        # Email doesn't exist in the database
+     #   return None
 def delete_acc(name):
     cur = mysql.cursor()
     cur.execute("DELETE FROM users WHERE username = %s", (name,))
@@ -169,91 +179,60 @@ def process():
         message = get_hello_message()
         message2 = formatting()
         c_time = time()
+
         email = request.form['email']
-       # session['name'] = name
         password = request.form['password']
-        name = session.get('name')
-        token = session.get('token')
-        connection = pymysql.connect(host='localhost', user='root', password='', database='tester')
 
 
-        cursor = connection.cursor()
-        cursor.execute('''SELECT * FROM users WHERE email = %s AND password = %s''',  (email, password) )
-        result = cursor.fetchall()
-
+        username = get_username_from_email(email)
+        query = "SELECT * FROM users WHERE email = %s AND password = %s"
+        result = execute_query(query, (email, password))
         if email == '':
                 error_message8 = "Please insert your email"
                 return render_template('login.html', message= message, message2=message2, error_message8 = error_message8)
         elif password == '':
                 error_message7 = "Please fill in all the details"
-                return render_template('login.html', message= message, message2=message2, error_message7 = error_message7)            
-       # elif len(password) < 8:
-        #    error_message9 = "Password must be atleast 8 characters"
-         #   return render_template('login.html', message= message, message2=message2, error_message9 = error_message9)
-        elif cursor.rowcount == 0:
+                return render_template('login.html', message= message, message2=message2, error_message7 = error_message7)
+        elif not result:
             error_message4 = "Oops! Please confirm your details"
             return render_template ('login.html', error_message4 = error_message4)
-        #elif name_exists_in_database(name, password) == 0:
-         #   return redirect(url_for('error_page')) 
         else:
-            update_last_login_time(email)
-            return redirect(url_for('shoe_hub', token = token, email = email))
+           # update_last_login_time(email)
+           if username:
+            generated_token = token_urlsafe(70)
+            save_token_in_database(email, generated_token)
+            session['token'] = generated_token
+            token = generated_token
+            session['email'] = email
+            session['name'] = username
+            if token:
+                return redirect(url_for('shoe_hub', token = token, username = username))
+            else:
+                token_err = "Token not found. Please log in again."
+                return render_template('login.html', token_err = token_err)
+            
     return render_template('login.html')
  
 @app.route('/shoehub/<token>', methods=['POST', 'GET'])
 def shoe_hub(token):
         if request.method == 'GET':
-             name = session.get('name')
+             name = request.args.get('username')
              name = name.split()
-             len_ = len(name)
+             #len_ = len(name)
              if name:
                   f_name = name[0]
                   return render_template('products.html', f_name = f_name)
              else:
                   #f_name = name[1]
                   return render_template('products.html')
-        #else:
-         #    return render_template('products.html')
-           # email = session.get('email')
-            #if email:
-             #    return render_template('products.html')
-            #else:
-             #    return redirect(url_for('process')) 
-        
-        #else:
-         # return render_template('products.html')
-        #if 'email' not in session:
-         #   return redirect('/login')
-
-        
-        #last_time = get_last_login_time(email)
-        #c_time = time()
-    #    time_ = c_time - last_time
-     #   time_ = str(time_)
-      #  time_ = time_.split(':')
-
-       # len_ = len(time_)
-    #    for i in range(len_):
-     #        if i == 0:
-      #            if int(time_[i]) != 0:
-       #                time_2 = time_[0]
-        #          else:
-         #              time_2 = time_[1]
-            #if name:
-             #   name = name.split()
-              #  length = len(name)
-               # if length == 1:
-                #    firstname = name[0]
-                 #   len2 = len(name[0])
-                  #  return render_template('products.html', firstname = firstname, len2 = len2, c_time = c_time)
-          #      elif length >= 2:
-           #         firstname = name[1]
-            #        len2 = len(firstname)
-             #       render_template('products.html', firstname = firstname, len2 = len2, c_time = c_time)
-              #  return render_template('products.html', firstname = firstname, len2 = len2 , last_time = last_time)"""
-@app.route('/test')
+@app.route('/test', methods=['GET', 'POST'])
 def error_page():
-    return render_template('test.html')
+    if request.method == 'GET':
+        return render_template('test.html')
+    else:
+        name = request.form['name']
+
+        return render_template('test.html', name = name)
 @app.route('/signin', methods=['POST', 'GET'])
 def signin_boy():
      if request.method == 'GET':
@@ -290,19 +269,10 @@ def signin_boy():
           if not special_char_check.search(password):
                error5 = "Password must contain special characters"
                return render_template('signup.html', error5= error5)
-
-
           else:
-            connection = pymysql.connect(host='localhost', password='', user='root', database='tester')
-            cursor = connection.cursor()
-
-            cursor.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", (name, email, password))
-            connection.commit()
+            execute_query("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", (name, email, password))
             send_welcome_email(email, name)
             session['email'] = email
-            generated_token = token_urlsafe(30)
-            save_token_in_database(email, generated_token)
-            session['token'] = generated_token
             saved = "Your details have been saved successfully, check your email"
             return render_template('signup.html', saved = saved, email = email)
 
@@ -315,9 +285,9 @@ def change_password():
           email = session.get('email')          
           current = request.form['current_pass']
           new = request.form['new_pass']
-          #if email:
-           #    email = signin_boy(email)
-            #   return render_template('update.html', email = email)
+          name = list(name)
+          name = name[0]
+
           if current == '' or new == '':
                error1 = "Please fill in all the details"
                return render_template('update.html', error1 = error1)
@@ -332,22 +302,17 @@ def change_password():
                error3 = "Password must contain special characters"
                return render_template('update.html', error3= error3)
 
-          
-          connection = pymysql.connect(host='localhost', user='root', password='', database='tester')
-          cursor = connection.cursor()
-
-          cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, current))
-          result = cursor.fetchone()
+          query = "SELECT * FROM users WHERE email = %s AND password = %s"
+          result = execute_query(query, (email, current))
 
           if result:
-            cursor.execute("UPDATE users SET password = %s WHERE email = %s", (new, email))
-            connection.commit()
+            execute_query("UPDATE users SET password = %s WHERE email = %s", (new, email))
             saved = "Successfully updated password, check your email"
             pass_update_email(email, name)
             return render_template('update.html', saved = saved)
           else:
                incorrect = "Incorrect Password"
-               return render_template('update.html', incorrect = incorrect, name = name)
+               return render_template('update.html', incorrect = incorrect, email = email)
 
           
 @app.route('/new_pass', methods=['POST', 'GET'])

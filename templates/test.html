@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/files/images/s-golden-7030451_640.jpg" type="image/jpg" sizes="32x32">
     <title>Test Page</title>
     <link rel="stylesheet" href="../static/files/css/lightslider.css">
     <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
@@ -39,11 +40,20 @@
     <center>
       <div class="col-md-3" align="center" style="background-color: rgb(225, 208, 186); border-radius: 7px;">
         <br><br>
+        {% if name %}
+          <p style="font-family: serif;color: green;">Hi {{ name }}</p>
+        {% endif %}
         <form action="/test" method="post">
-          <input type="text" placeholder="Your name" style="border-radius: 7px;">
+          <i class="fa-solid fa-right-to-bracket fa-beat-fade" style="color: #21e825;font-size: 34px;"></i>&nbsp;
+          <input type="text" name="name"  placeholder="Your name" style="border-radius: 7px;">
         </form>
         <br><br>
       </div>
+  </center>
+  <br><br><br><br><br><br><br>
+  <center>
+    <p>Dont stress out!!</p>
+    <i class="fa-solid fa-face-smile fa-bounce fa-xs" style="color: #fff047; font-size: 200px;"></i>
   </center>
 </body>
 </html>
